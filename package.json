@@ -1,0 +1,10 @@
+{
+	"name": "overlay",
+	"jspm": {
+		"dependencies": {
+			"domUtils": "github:DEGJS/domUtils@master"
+		},
+		"format": "es6",
+  		"registry": "jspm"
+	}
+}
