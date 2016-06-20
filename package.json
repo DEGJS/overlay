@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "DEG (http://degdigital.com)",
   "dependencies": {
-			"domUtils": "github:DEGJS/domUtils@1.0.1"
+			"domUtils": "github:DEGJS/domUtils"
 },
   "repository": {
         "type": "git",
