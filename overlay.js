@@ -1,4 +1,4 @@
-import domUtils from "plugins/domUtils";
+import domUtils from "DEGJS/domUtils";
 
 let overlay = function() {
 
