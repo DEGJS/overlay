@@ -1,6 +1,6 @@
 {
     "name": "overlay",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A plugin that creates a page overlay.",
     "keywords": [
 
@@ -25,7 +25,7 @@
             "lib": "src"
         },
         "dependencies": {
-            "domUtils": "github:DEGJS/domUtils@1.0.1"
+            "domUtils": "github:DEGJS/domUtils@1.0.2"
         }
     }
 }
