@@ -1,18 +1,31 @@
 {
-  "name": "overlay",
-  "version": "1.0.0",
-  "author": "DEG (http://degdigital.com)",
-  "dependencies": {
-			"domUtils": "github:DEGJS/domUtils@1.0.1"
-},
-  "repository": {
+    "name": "overlay",
+    "version": "1.0.1",
+    "description": "A plugin that creates a page overlay.",
+    "keywords": [
+
+        "DEGJS"
+    ],
+    "author": {
+        "name": "Aaron Ladage",
+        "email": "aladage@degdigital.com",
+        "url": "http://aaronladage.com"
+    },
+    "license": "MIT",
+    "repository": {
         "type": "git",
         "url": "https://github.com/DEGJS/overlay.git"
-  },
-  "jspm": {
-  	"format": "es6",
-  	"registry": "jspm",
-  	"main": "overlay",
-  	"files": ["overlay.js"]
-  }
+    },
+    "bugs": "https://github.com/DEGJS/overlay/issues",
+    "jspm": {
+        "registry": "jspm",
+        "format": "es6",
+        "main": "overlay.js",
+        "directories": {
+            "lib": "src"
+        },
+        "dependencies": {
+            "domUtils": "github:DEGJS/domUtils@1.0.1"
+        }
+    }
 }
