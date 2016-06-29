@@ -27,7 +27,7 @@
             "lib": "src"
         },
         "dependencies": {
-            "DEGJS/domUtils": "github:DEGJS/domUtils@^1.0.3"
+            "DEGJS/domUtils": "github:DEGJS/domUtils@^1.0.2"
         }
     }
 }
