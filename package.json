@@ -1,9 +1,11 @@
 {
     "name": "overlay",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A plugin that creates a page overlay.",
     "keywords": [
-
+        "overlay",
+        "dialog",
+        "modal",
         "DEGJS"
     ],
     "author": {
@@ -25,7 +27,7 @@
             "lib": "src"
         },
         "dependencies": {
-            "domUtils": "github:DEGJS/domUtils@1.0.2"
+            "DEGJS/domUtils": "github:DEGJS/domUtils@^1.0.3"
         }
     }
 }
