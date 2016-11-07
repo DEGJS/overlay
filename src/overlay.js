@@ -14,7 +14,8 @@ let overlay = function() {
 			backdropClass: 'overlay__backdrop',
 			closeButtonClass: ['overlay__close-button','close-button', 'icon-close'],
 			contentClass: 'overlay__content',
-			closeButtonText: 'Close'
+			closeButtonText: 'Close',
+			hideCloseButton: false
 		};
 
 	function open(optionalContent = null) {
@@ -53,10 +54,12 @@ let overlay = function() {
 			domUtils.addCssClasses(backdropEl, settings.backdropClass);
 			containerEl.appendChild(backdropEl);
 
-			closeButtonEl = document.createElement('button');
-			closeButtonEl.textContent = settings.closeButtonText;
-			domUtils.addCssClasses(closeButtonEl, settings.closeButtonClass);
-			containerEl.appendChild(closeButtonEl);
+			if (!settings.hideCloseButton) {
+				closeButtonEl = document.createElement('button');
+				closeButtonEl.textContent = settings.closeButtonText;
+				domUtils.addCssClasses(closeButtonEl, settings.closeButtonClass);
+				containerEl.appendChild(closeButtonEl);
+			}
 
 			contentEl = document.createElement('div');
 			domUtils.addCssClasses(contentEl, settings.contentClass);
