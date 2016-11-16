@@ -75,7 +75,7 @@ let overlay = function() {
 	};
 
 	function bindEvents() {
-		document.addEventListener('click', function(e) {
+		containerEl.addEventListener('click', function(e) {
 			let clickedEl = e.target,
 				isCloseButton = clickedEl.closest(settings.closeButtonClass[0]),
 				isBackDrop = clickedEl.closest(settings.backdropClass, clickedEl);
