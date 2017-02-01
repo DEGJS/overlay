@@ -1,3 +1,4 @@
+/* */ 
 import domUtils from "DEGJS/domUtils";
 
 let overlay = function() {
@@ -8,23 +9,25 @@ let overlay = function() {
 		closeButtonEl,
 		contentEl,
 		elsCreated = false,
+		mainBackdropClass = 'js-overlay-backdrop',
+		mainCloseButtonClass = 'js-overlay-close-button',
 		settings = {
 			openClass: 'overlay-is-open',
 			stickyClass: 'overlay-is-sticky',
 			containerClass: 'overlay',
-			backdropClass: 'overlay__backdrop',
-			closeButtonClass: ['overlay__close-button','close-button', 'icon-close'],
+			backdropClasses: ['overlay__backdrop'],
+			closeButtonClasses: ['overlay__close-button','close-button', 'icon-close'],
 			contentClass: 'overlay__content',
 			closeButtonText: 'Close'
 		};
 
-	function open(optionalContent = null, params) {
+	function open(optionalContent = null, params = {}) {
 		createElements(params);
 		if (optionalContent !== null) {
 			setContent(optionalContent);
 		}
 		bodyEl.classList.add(settings.openClass);
-		if ((params) && (params.isSticky)) {
+		if (params.isSticky) {
 			bodyEl.classList.add(settings.stickyClass);
 		}
 	};
@@ -54,15 +57,15 @@ let overlay = function() {
 			domUtils.addCssClasses(containerEl, settings.containerClass);
 
 			backdropEl = document.createElement('div');
-			domUtils.addCssClasses(backdropEl, settings.backdropClass);
+			domUtils.addCssClasses(backdropEl, settings.backdropClasses);
+			backdropEl.classList.add(mainBackdropClass);
 			containerEl.appendChild(backdropEl);
 
-			if ((params) && (params.showCloseButton)) {
-				closeButtonEl = document.createElement('button');
-				closeButtonEl.textContent = settings.closeButtonText;
-				domUtils.addCssClasses(closeButtonEl, settings.closeButtonClass);
-				containerEl.appendChild(closeButtonEl);
-			}
+			closeButtonEl = document.createElement('button');
+			closeButtonEl.textContent = settings.closeButtonText;
+			domUtils.addCssClasses(closeButtonEl, settings.closeButtonClasses);
+			closeButtonEl.classList.add(mainCloseButtonClass);
+			containerEl.appendChild(closeButtonEl);
 
 			contentEl = document.createElement('div');
 			domUtils.addCssClasses(contentEl, settings.contentClass);
@@ -77,15 +80,11 @@ let overlay = function() {
 	function bindEvents() {
 		containerEl.addEventListener('click', function(e) {
 			let clickedEl = e.target,
-				isCloseButton = clickedEl.closest(settings.closeButtonClass[0]),
-				isBackDrop = clickedEl.closest(settings.backdropClass, clickedEl);
-			if ((isCloseButton !== false) || (isBackDrop !== false)) {
-				if ((isBackDrop !== false) && (isSticky() === false)) {
-					close();
-				}
-				if (isCloseButton !== false) {
-					close();
-				}
+				isBackDrop = clickedEl.closest('.' + mainBackdropClass) !== null,
+				isCloseButton = clickedEl.closest('.' + mainCloseButtonClass) !== null ;
+
+			if ((isCloseButton) || ((isSticky() === false) && (isBackDrop))) {
+				close();
 			}
 		});
 		document.addEventListener('keyup', function(e) {
