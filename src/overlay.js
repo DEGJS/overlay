@@ -11,23 +11,28 @@ let overlay = function() {
 		elsCreated = false,
 		mainBackdropClass = 'js-overlay-backdrop',
 		mainCloseButtonClass = 'js-overlay-close-button',
-		settings = {
+		settings,
+		defaults = {
 			openClass: 'overlay-is-open',
 			stickyClass: 'overlay-is-sticky',
 			containerClass: 'overlay',
 			backdropClasses: ['overlay__backdrop'],
 			closeButtonClasses: ['overlay__close-button','close-button', 'icon-close'],
 			contentClass: 'overlay__content',
-			closeButtonText: 'Close'
+			hasCloseButton: true,
+			closeButtonText: 'Close',
+			isSticky: false
 		};
 
 	function open(optionalContent = null, params = {}) {
-		createElements(params);
+		settings = Object.assign({}, defaults, params);
+
+		createElements();
 		if (optionalContent !== null) {
 			setContent(optionalContent);
 		}
 		bodyEl.classList.add(settings.openClass);
-		if (params.isSticky) {
+		if (settings.isSticky) {
 			bodyEl.classList.add(settings.stickyClass);
 		}
 	};
@@ -51,7 +56,7 @@ let overlay = function() {
 
 	};
 
-	function createElements(params) {
+	function createElements() {
 		if (!elsCreated) {
 			containerEl = document.createElement('div');
 			domUtils.addCssClasses(containerEl, settings.containerClass);
@@ -61,11 +66,13 @@ let overlay = function() {
 			backdropEl.classList.add(mainBackdropClass);
 			containerEl.appendChild(backdropEl);
 
-			closeButtonEl = document.createElement('button');
-			closeButtonEl.textContent = settings.closeButtonText;
-			domUtils.addCssClasses(closeButtonEl, settings.closeButtonClasses);
-			closeButtonEl.classList.add(mainCloseButtonClass);
-			containerEl.appendChild(closeButtonEl);
+			if(settings.hasCloseButton) {
+				closeButtonEl = document.createElement('button');
+				closeButtonEl.textContent = settings.closeButtonText;
+				domUtils.addCssClasses(closeButtonEl, settings.closeButtonClasses);
+				closeButtonEl.classList.add(mainCloseButtonClass);
+				containerEl.appendChild(closeButtonEl);
+			}
 
 			contentEl = document.createElement('div');
 			domUtils.addCssClasses(contentEl, settings.contentClass);
